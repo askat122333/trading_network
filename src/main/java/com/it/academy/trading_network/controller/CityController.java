@@ -1,6 +1,7 @@
 package com.it.academy.trading_network.controller;
 
 import com.it.academy.trading_network.DTO.CityDTO;
+import com.it.academy.trading_network.Entity.City;
 import com.it.academy.trading_network.service.CityService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,9 @@ public class CityController {
     @DeleteMapping("/delete")
     public String delete (@PathVariable Long id) {
         return cityService.delete(id);
+    }
+    @GetMapping("/getByName")
+    public City getByName( @RequestParam String name){
+        return cityService.getByName(name);
     }
 }

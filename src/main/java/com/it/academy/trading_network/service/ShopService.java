@@ -1,7 +1,9 @@
 package com.it.academy.trading_network.service;
 
 import com.it.academy.trading_network.DTO.ShopDTO;
+import com.it.academy.trading_network.Entity.City;
 import com.it.academy.trading_network.Entity.Shop;
+import com.it.academy.trading_network.Entity.Street;
 import com.it.academy.trading_network.repository.CityRepository;
 import com.it.academy.trading_network.repository.ShopRepository;
 import com.it.academy.trading_network.repository.StreetRepository;
@@ -78,12 +80,14 @@ public class ShopService {
     public List<ShopDTO> getFilteredShops(String street, String city, Integer open) {
         List<Shop> shops = shopRepository.findAll();
         if (street != null) {
+            Street street1 = streetRepository.getByName(street);
             shops = shops.stream()
-                    .filter(shop -> shop.getStreet().equals(street)).toList();
+                    .filter(shop -> shop.getStreet() == street1).toList();
         }
         if (city != null) {
+            City city1 = cityRepository.getByName(city);
             shops = shops.stream()
-                    .filter(shop -> shop.getCity().equals(city)).toList();
+                    .filter(shop -> shop.getCity() == city1).toList();
         }
         if (open != null) {
             shops = shops.stream()

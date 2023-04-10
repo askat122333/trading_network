@@ -57,4 +57,7 @@ public class CityService {
         return cityDTO;
     }
 
+    public City getByName(String name) {
+       return cityRepository.getByName(name);
+    }
 }
